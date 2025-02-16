@@ -13,7 +13,7 @@ Array
 require '../config/mysqli.php';
 require '../Models/Event.php';
 
-$url = editEvent($_POST['date'], $_POST['time'], $_POST['category'], $_POST['name'], $_POST['id'], $con);
+$url = editEvent($_POST['date'], $_POST['time'], $_POST['category'], $_POST['name'], $_POST['day_notes'], $_POST['id'], $con);
 
 header('Location: ../?month='. $url);
 

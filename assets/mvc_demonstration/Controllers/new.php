@@ -10,7 +10,7 @@ Array (
 require('../config/mysqli.php');
 require('../Models/Event.php');
 
-$url = addEvent($_POST['date'], $_POST['time'], $_POST['category'], $_POST['name'], $con);
+$url = addEvent($_POST['date'], $_POST['time'], $_POST['category'], $_POST['name'], $_POST['day_notes'], $con);
 
 header('Location: ../?month='.$url);
 

@@ -43,11 +43,11 @@ $categories = getCategories($con);
                     type: 'GET',
                     dataType: 'json'
                 }).done(function(data){
-
                     $('#editEvent .input-date').val(data.date);
                     $('#editEvent .input-time').val(data.time);
                     $('#editEvent .select-categories').val(data.cat);
                     $('#editEvent .input-name').val(data.name);
+                    $('#day_notes').val(data.day_notes);
                     $('#editEvent .input-id').val(data.id);
                     $('#editEvent .btn-remove').attr('data-event', data.id);
                     
@@ -64,7 +64,7 @@ $categories = getCategories($con);
 </head>
 <body>
     <div class="container">
-        <h3><i class="icon-calendar"></i>Calendar Events</h3>
+        <h3><i class="icon-calendar"></i>Diary to Adventists</h3>
         <!-- SELECT DATE FORM -->
         <div class="row">
             <div class="col-md-4">
@@ -95,7 +95,7 @@ $categories = getCategories($con);
             <div class="modal-content">
             <form action="controllers/new.php" method="post">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><i class="icon-calendar"></i> Add New Event</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="icon-calendar"></i> Add New Note in Diary</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,8 +120,9 @@ $categories = getCategories($con);
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="name" placeholder="Event Name">
+                            <input type="text" class="form-control" name="name" placeholder="Title of today's notes">
                         </div>
+                        <textarea class="form-control" name="day_notes" placeholder="Description of the day" id="" cols="30" rows="5"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -165,6 +166,7 @@ $categories = getCategories($con);
                         <div class="form-group">
                             <input type="text" class="form-control input-name" name="name" placeholder="Event Name">
                         </div>
+                        <textarea class="form-control" id="day_notes" class="form-control input-day_notes" name="day_notes" placeholder="Description of the day" id="" cols="30" rows="5"></textarea>
                         <input class="input-id" type="hidden" name="id">
                 </div>
                 <div class="modal-footer">

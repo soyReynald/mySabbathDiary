@@ -5,6 +5,7 @@ function getEvents($from, $to, $con){
                     events.id,
                     DATE_FORMAT(date, '%d%m%Y') AS arr_index,
                     events.name,
+                    events.day_notes,
                     categories.name AS category,
                     icon,
                     DATE_FORMAT(date, '%l:%i%p') AS time
@@ -37,6 +38,7 @@ function jsonEvent($id, $con){
             DATE_FORMAT(date, '%Y-%m-%d') AS date,
             DATE_FORMAT(date, '%H:%i') AS time,
             cat,
+            day_notes,
             name
         FROM events WHERE id = $id";
 
@@ -47,16 +49,18 @@ function jsonEvent($id, $con){
     return json_encode($event);
 }
 
-function addEvent($date, $time, $category, $name, $con){
+function addEvent($date, $time, $category, $name, $day_notes, $con){
 
     $date = clean($date, $con);
     $time = clean($time, $con);
     $category = clean($category, $con);
     $name = clean($name, $con);
+    $day_notes = clean($day_notes, $con);
 
     $dateFixed = date('Y-m-d h:i:s', strtotime($date . ' ' . $time));
 
-    $sql = "INSERT INTO events (cat, name, date) VALUES ('$category', '$name', '$dateFixed')";
+    //! Luke 12:13-21 - The parable of the rich fool
+    $sql = "INSERT INTO events (cat, name, day_notes, date) VALUES ('$category', '$name', '$day_notes', '$dateFixed')";
 
     $con->query($sql) or die($con->error);
 
@@ -65,17 +69,18 @@ function addEvent($date, $time, $category, $name, $con){
     return $url;
 }
 
-function editEvent($date, $time, $category, $name, $id, $con){
+function editEvent($date, $time, $category, $name, $day_notes, $id, $con){
 
     $date = clean($date, $con);
     $time = clean($time, $con);
     $category = clean($category, $con);
     $name = clean($name, $con);
     $id = clean($id, $con);
+    $day_notes = clean($day_notes, $con);
 
     $dateTime = date('Y-m-d H:i', strtotime($date.' '.$time));
 
-    $sql = "UPDATE events SET name = '$name', date = '$dateTime', cat = $category WHERE id = $id";
+    $sql = "UPDATE events SET name = '$name', day_notes = '$day_notes', date = '$dateTime', cat = $category WHERE id = $id";
 
     $con->query($sql);
 
@@ -101,7 +106,7 @@ function deleteEvent($id, $con){
     return $url;
 }
 
-function getCategories($con){
+function getCategories($con) {
     $sql = "SELECT * FROM categories";
 
     $categories = array();
