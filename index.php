@@ -13,14 +13,14 @@ $categories = getCategories($con);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar - events</title>
     <style>
-        @import url('css/bootstrap.css');
-        @import url('css/fontello.css');
-        @import url('css/bootstrap-datepicker.css');
-        @import url('css/style.css');
+        @import url('Views/css/bootstrap.css');
+        @import url('Views/css/fontello.css');
+        @import url('Views/css/bootstrap-datepicker.css');
+        @import url('Views/css/style.css');
     </style>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="Views/js/jquery-3.5.1.min.js"></script>
+    <script src="Views/js/bootstrap-datepicker.js"></script>
+    <script src="Views/js/bootstrap.js"></script>
     <script>
         $(function(){
 
